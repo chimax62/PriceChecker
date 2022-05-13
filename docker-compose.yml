@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+  application:
+    container_name: ${dockertag_application}
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile-application
+    environment:
+      - COMMIT_SHA
+      - COMMIT_AUTHOR
+      - COMMIT_COMMENT
+      - COMMIT_DATE 
+      - EXTENDED_VERSION 
+      - NORMALIZED_COMMIT_COMMENT 
+      - OCTOPUS_URL 
+      - NUGET_FEED 
+      - NUGET_LIBRARY_FEED
+      - NETWORK_NAME
+
+  mongodb:
+    container_name: ${dockertag_mongodb}
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile-mongodb
+    networks:
+      default:
+        aliases:
+          - mongodb
+
+networks:
+  default:
+    name: ${NETWORK_NAME}

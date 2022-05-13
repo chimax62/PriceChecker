@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine
+
+ENV PATH="/tools:${PATH}"
+RUN pwsh -c "Invoke-WebRequest ' https://dot.net/v1/dotnet-install.sh' -OutFile 'dotnet-install.sh';" \
+	apk add bash icu-libs krb5-libs libgcc libintl libssl1.1 libstdc++ zlib &&\
+    chmod +x ./dotnet-install.sh && \
+	./dotnet-install.sh -c 5.0 --install-dir /usr/share/dotnet && \
+	mkdir /work && \
+    dotnet tool install Octopus.DotNet.Cli --tool-path /tools
+
+WORKDIR /work

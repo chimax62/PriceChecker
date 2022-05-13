@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PriceChecker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "AppSettings.Override": "{\"NLog\":{\"ConsoleTarget\":{\"Enabled\":\"true\",\"MinLevel\":\"INFO\",\"MaxLevel\":\"FATAL\"},\"FileTarget\":{\"Enabled\":\"true\",\"MinLevel\":\"INFO\",\"MaxLevel\":\"FATAL\",\"FileName\":\"PriceChecker.log\",\"Layout\":\"${longdate}[${threadid}] ${level} ${logger} - ${message}${newline}${exception:format=ToString,StackTrace}${newline}\",\"MaxNumberOfFile\":\"5\",\"FileSize\":\"1048576\"}}}"
+      }
+    }
+  }
+}
