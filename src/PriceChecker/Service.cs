@@ -64,9 +64,10 @@ public class Service : BackgroundService
         var metricsScheduler = SetUpMetricsScheduler(metricsReporter.Value, metricsCollector);
         var deadLetterDb = new MongoDb(config["ConnectionStrings:DeadLetters"]);
         var deadLetterGateway = new DeadLetterGateway(deadLetterDb.GetDatabase());
-        var rabbitMqDependencies = CreateRabbitMqConsumer(config, metricsCollector, deadLetterGateway);
+        //var rabbitMqDependencies = CreateRabbitMqConsumer(config, metricsCollector, deadLetterGateway);
         var pepperBus = CreatePepperBus(config, metricsCollector, deadLetterDb);
-        return new ServiceDependencies(metricsScheduler, metricsReporter, rabbitMqDependencies, pepperBus);
+        //return new ServiceDependencies(metricsScheduler, metricsReporter, rabbitMqDependencies, pepperBus);
+        return new ServiceDependencies(metricsScheduler, metricsReporter, null!, pepperBus);
     }
 
     private static RabbitMqDependencies CreateRabbitMqConsumer(
