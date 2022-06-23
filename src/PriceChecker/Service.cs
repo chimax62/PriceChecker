@@ -58,6 +58,7 @@ public class Service : BackgroundService
 
     private static ServiceDependencies SetupCompositionRoot(IConfiguration config)
     {
+        //TO DO - RabbitMQ Connection verify
         var metricsCollector = new MetricsCollector();
         var metricsReporter = CreateMetricsReporter(config);
         var metricsScheduler = SetUpMetricsScheduler(metricsReporter.Value, metricsCollector);
